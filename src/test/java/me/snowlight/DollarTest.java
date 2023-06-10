@@ -25,9 +25,7 @@ class DollarTest {
         assertThat(new Dollar(5)).isNotEqualTo(new Dollar(6));
     }
 
-    private class Dollar {
-        public int amount;
-
+    private class Dollar extends Money {
         public Dollar(int amount) {
             this.amount = amount;
         }
@@ -35,11 +33,6 @@ class DollarTest {
         public Dollar times(int multiplier) {
             return new Dollar(this.amount * multiplier);
         }
-
-        @Override
-        public boolean equals(Object obj) {
-            Dollar dollar = (Dollar) obj;
-            return this.amount == dollar.amount;
-        }
     }
+
 }

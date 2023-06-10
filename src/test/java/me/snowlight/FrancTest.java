@@ -14,21 +14,20 @@ public class FrancTest {
         assertThat(five.times(3)).isEqualTo(new Franc(15));
     }
 
-    private static class Franc {
-        public int amount;
+    @DisplayName("Franc 동시성 | equals")
+    @Test
+    void testEquality() {
+        assertThat(new Franc(5)).isEqualTo(new Franc(5));
+        assertThat(new Franc(5)).isNotEqualTo(new Franc(6));
+    }
 
+    private static class Franc extends Money {
         public Franc(int amount) {
             this.amount = amount;
         }
 
         public Franc times(int multiplier) {
             return new Franc(this.amount * multiplier);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            Franc dollar = (Franc) obj;
-            return this.amount == dollar.amount;
         }
     }
 }
