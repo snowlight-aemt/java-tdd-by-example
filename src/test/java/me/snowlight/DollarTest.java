@@ -23,6 +23,7 @@ class DollarTest {
         // * 더 이상 상수로 테스트를 성공 시킬 수 없다. (동치성을 일반화)
         assertThat(new Dollar(5)).isEqualTo(new Dollar(5));
         assertThat(new Dollar(5)).isNotEqualTo(new Dollar(6));
+        assertThat(new Dollar(5)).isNotEqualTo(new Franc(5));
     }
 
 }
