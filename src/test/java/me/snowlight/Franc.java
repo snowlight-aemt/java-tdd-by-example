@@ -1,12 +1,20 @@
 package me.snowlight;
 
 class Franc extends Money {
-    public Franc(int amount) {
+
+    private final String currency;
+
+    public Franc(int amount, String currency) {
         this.amount = amount;
+        this.currency = currency;
+    }
+
+    public String currency() {
+        return currency;
     }
 
     @Override
     public Money times(int multiplier) {
-        return new Franc(this.amount * multiplier);
+        return Money.franc(this.amount * multiplier);
     }
 }

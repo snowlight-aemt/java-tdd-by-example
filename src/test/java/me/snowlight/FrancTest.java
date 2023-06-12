@@ -22,4 +22,9 @@ public class FrancTest {
         assertThat(Money.franc(5)).isNotEqualTo(Money.dollar(5));
     }
 
+    @DisplayName("통화 단위 CHF")
+    @Test
+    public void testCurrency() {
+        assertThat("CHF").isEqualTo(Money.franc(1).currency());
+    }
 }
