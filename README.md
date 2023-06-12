@@ -17,5 +17,5 @@
 * ~~공용 equals~~
 * 공용 times
 * ~~Franc 과 Dollar 비교하기~~
-* 통화 (화폐 단위)
+* ~~통화 (화폐 단위)~~
 * testFrancMultiplication 를 제거 할까?

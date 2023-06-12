@@ -1,14 +1,8 @@
 package me.snowlight;
 
 class Dollar extends Money {
-
     public Dollar(int amount, String currency) {
-        this.amount = amount;
-        this.currency = currency;
-    }
-
-    public String currency() {
-        return currency;
+        super(amount, currency);
     }
 
     @Override

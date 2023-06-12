@@ -26,7 +26,7 @@ class DollarTest {
         assertThat(Money.dollar(5)).isNotEqualTo(Money.franc(5));
     }
 
-    @DisplayName("통화 단위 USB")
+    @DisplayName("통화 단위 USD")
     @Test
     public void testCurrency() {
         assertThat("USD").isEqualTo(Money.dollar(1).currency());
