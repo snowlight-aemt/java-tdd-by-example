@@ -15,7 +15,7 @@ class DollarTest {
         assertThat(five.times(3)).isEqualTo(Money.dollar(15));
     }
 
-    @DisplayName("Dollar 동시성 | equals")
+    @DisplayName("Dollar 동치성 | equals")
     @Test
     void testEquality() {
         // TODO 삼각측량 전략
@@ -30,5 +30,11 @@ class DollarTest {
     @Test
     public void testCurrency() {
         assertThat("USD").isEqualTo(Money.dollar(1).currency());
+    }
+
+    @DisplayName("금액과 통화로 동치성 | equals")
+    @Test
+    void testDifferentClassEquality() {
+        assertThat(new Money(10, "USD")).isEqualTo(Money.dollar(10));
     }
 }

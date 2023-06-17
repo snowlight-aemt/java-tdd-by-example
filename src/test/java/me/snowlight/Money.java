@@ -1,6 +1,6 @@
 package me.snowlight;
 
-abstract class Money {
+class Money {
     protected int amount;
     protected String currency;
 
@@ -17,16 +17,18 @@ abstract class Money {
         return new Franc(amount, "CHF");
     }
 
-    public abstract Money times(int amount);
-
     public String currency() {
         return currency;
+    }
+
+    public Money times(int multiplier) {
+        return new Money(this.amount * multiplier, this.currency);
     }
 
     @Override
     public boolean equals(Object obj) {
         Money money = (Money) obj;
         return this.amount == money.amount
-                    && getClass().equals(money.getClass());
+                && this.currency.equals(money.currency);
     }
 }

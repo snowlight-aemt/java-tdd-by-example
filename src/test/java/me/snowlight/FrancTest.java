@@ -27,4 +27,10 @@ public class FrancTest {
     public void testCurrency() {
         assertThat("CHF").isEqualTo(Money.franc(1).currency());
     }
+
+    @DisplayName("금액과 통화로 동치성 | equals")
+    @Test
+    void testDifferentClassEquality() {
+        assertThat(new Money(10, "CHF")).isEqualTo(Money.franc(10));
+    }
 }
