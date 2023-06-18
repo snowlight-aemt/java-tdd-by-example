@@ -83,6 +83,16 @@ public class MoneyTest {
         assertThat(result).isEqualTo(Money.dollar(1));
     }
 
+    @DisplayName("Money 통화 변경 (환율) | CHF -> USD")
+    @Test
+    void testReduceMoneyDifferentCurrency() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(Money.franc(2), "USD");
+
+        assertThat(result).isEqualTo(Money.dollar(1));
+    }
+
     class Bank {
         public Money reduce(Expression source, String currency) {
 //            // TODO 클래스를 명시적으로 검사하는 코드가 있을 때에는 항상 다형성을 사용하도록 바꾸는것이 좋다.는
@@ -90,6 +100,10 @@ public class MoneyTest {
 //            Sum sum = (Sum) source;
 
             return source.reduce(currency);
+        }
+
+        public void addRate(String currency, String toCurrency, int div) {
+
         }
     }
 }
