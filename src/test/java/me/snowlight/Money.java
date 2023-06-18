@@ -1,5 +1,7 @@
 package me.snowlight;
 
+import java.util.Objects;
+
 class Money {
     protected int amount;
     protected String currency;
@@ -26,9 +28,17 @@ class Money {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Money money = (Money) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Money money = (Money) o;
         return this.amount == money.amount
                 && this.currency.equals(money.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, currency);
     }
 }
