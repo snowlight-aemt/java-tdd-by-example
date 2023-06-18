@@ -53,9 +53,43 @@ public class MoneyTest {
         assertThat(Money.dollar(10)).isEqualTo(reduced);
     }
 
+    @DisplayName("Money 더하기 연산 | $5 + $5 => Expression")
+    @Test
+    void testPlusReturnsSum() {
+        Money five = Money.dollar(5);
+        Expression result = five.plus(five);
+
+        Sum sum = (Sum) result;
+        assertThat(five).isEqualTo(sum.augend);
+        assertThat(five).isEqualTo(sum.addend);
+    }
+
+    @DisplayName("Money 더하기 연산 | $3 + $4 = $7 (bank.reduce())")
+    @Test
+    void testReduceSum() {
+        Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
+        Bank bank = new Bank();
+        Money result = bank.reduce(sum, "USD");
+
+        assertThat(result).isEqualTo(Money.dollar(7));
+    }
+
+    @DisplayName("Money 더하기 연산 | Bank.reduce(Money)")
+    @Test
+    void testReduceMoney() {
+        Bank bank = new Bank();
+        Money result = bank.reduce(Money.dollar(1), "USD");
+
+        assertThat(result).isEqualTo(Money.dollar(1));
+    }
+
     class Bank {
-        public Money reduce(Expression exp, String currency) {
-            return Money.dollar(10);
+        public Money reduce(Expression source, String currency) {
+//            // TODO 클래스를 명시적으로 검사하는 코드가 있을 때에는 항상 다형성을 사용하도록 바꾸는것이 좋다.는
+//            if (source instanceof Money) return (Money) source.reduce(currency);
+//            Sum sum = (Sum) source;
+
+            return source.reduce(currency);
         }
     }
 }

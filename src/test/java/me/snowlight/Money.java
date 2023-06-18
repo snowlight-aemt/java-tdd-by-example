@@ -27,6 +27,14 @@ class Money implements Expression {
         return new Money(this.amount * multiplier, this.currency);
     }
 
+    public Expression plus(Money addend) {
+        return new Sum(this, addend);
+    }
+
+    public Money reduce(String currency) {
+        return new Money(this.amount, currency);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,8 +48,5 @@ class Money implements Expression {
     @Override
     public int hashCode() {
         return Objects.hash(amount, currency);
-    }
-    public Expression plus(Money addend) {
-        return new Money(this.amount + addend.amount, currency);
     }
 }
