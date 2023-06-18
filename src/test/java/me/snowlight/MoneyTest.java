@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class DollarTest {
-
+public class MoneyTest {
     @DisplayName("Dollar 곱셈, Dollar 불변성 | $5 * 2 = $10")
     @Test
     void testMultiplication() {
@@ -15,7 +14,7 @@ class DollarTest {
         assertThat(five.times(3)).isEqualTo(Money.dollar(15));
     }
 
-    @DisplayName("Dollar 동치성 | equals")
+    @DisplayName("Money 동치성 | equals")
     @Test
     void testEquality() {
         // TODO 삼각측량 전략
@@ -24,17 +23,23 @@ class DollarTest {
         assertThat(Money.dollar(5)).isEqualTo(Money.dollar(5));
         assertThat(Money.dollar(5)).isNotEqualTo(Money.dollar(6));
         assertThat(Money.dollar(5)).isNotEqualTo(Money.franc(5));
+
+        assertThat(Money.franc(5)).isEqualTo(Money.franc(5));
+        assertThat(Money.franc(5)).isNotEqualTo(Money.franc(6));
+        assertThat(Money.franc(5)).isNotEqualTo(Money.dollar(5));
     }
 
     @DisplayName("통화 단위 USD")
     @Test
     public void testCurrency() {
         assertThat("USD").isEqualTo(Money.dollar(1).currency());
+        assertThat("CHF").isEqualTo(Money.franc(1).currency());
     }
 
     @DisplayName("금액과 통화로 동치성 | equals")
     @Test
     void testDifferentClassEquality() {
         assertThat(new Money(10, "USD")).isEqualTo(Money.dollar(10));
+        assertThat(new Money(10, "CHF")).isEqualTo(Money.franc(10));
     }
 }

@@ -13,9 +13,9 @@
 * ~~5CHF * 2 = 10CHF~~
   * $5 + 10CHF = $10 | 큰 테스트 처리를 위한 작은 테스트
   * 테스트 성공 확인 까지만 진행. 추가 리팩토링 진행.
-* Dollar/ Franc 중복
+* ~~Dollar/ Franc 중복~~
 * ~~공용 equals~~
-* 공용 times
+* ~~공용 times~~
 * ~~Franc 과 Dollar 비교하기~~
 * ~~통화 (화폐 단위)~~
 * testFrancMultiplication 를 제거 할까?
