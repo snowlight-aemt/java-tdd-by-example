@@ -2,5 +2,5 @@ package me.snowlight;
 
 
 public interface Expression {
-    Money reduce(String currency);
+    Money reduce(MoneyTest.Bank bank, String currency);
 }
