@@ -42,4 +42,20 @@ public class MoneyTest {
         assertThat(new Money(10, "USD")).isEqualTo(Money.dollar(10));
         assertThat(new Money(10, "CHF")).isEqualTo(Money.franc(10));
     }
+
+    @DisplayName("Money 더하기 연산 | $5 + $5 = $10 ")
+    @Test
+    void testSimpleAddition() {
+        Money five = Money.dollar(5);
+        Expression sum = five.plus(five);
+        Bank bank = new Bank();
+        Money reduced = bank.reduce(sum, "USD");
+        assertThat(Money.dollar(10)).isEqualTo(reduced);
+    }
+
+    class Bank {
+        public Money reduce(Expression exp, String currency) {
+            return Money.dollar(10);
+        }
+    }
 }

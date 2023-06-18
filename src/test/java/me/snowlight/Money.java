@@ -2,7 +2,7 @@ package me.snowlight;
 
 import java.util.Objects;
 
-class Money {
+class Money implements Expression {
     protected int amount;
     protected String currency;
 
@@ -40,5 +40,8 @@ class Money {
     @Override
     public int hashCode() {
         return Objects.hash(amount, currency);
+    }
+    public Expression plus(Money addend) {
+        return new Money(this.amount + addend.amount, currency);
     }
 }
