@@ -9,7 +9,7 @@ class Sum implements Expression {
         this.addend = addend;
     }
 
-    public Money reduce(MoneyTest.Bank bank, String currency) {
+    public Money reduce(Bank bank, String currency) {
         int amount = this.augend.amount + this.addend.amount;
         return new Money(amount, currency);
     }
