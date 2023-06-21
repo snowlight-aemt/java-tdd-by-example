@@ -110,4 +110,36 @@ public class MoneyTest {
 
         assertThat(result).isEqualTo(Money.dollar(10));
     }
+
+    @DisplayName("Sum 수식에 Money 더하기 | Sum.reduce(...)")
+    @Test
+    void testSumPlusMoney() {
+        Money fiveBucks = Money.dollar(5);
+        Money tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+        Expression result = bank.reduce(sum, "USD");
+
+        assertThat(result).isEqualTo(Money.dollar(15));
+    }
+
+    @DisplayName("Sum 수식에 times 연산자")
+    @Test
+    void testTimesMoney() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
+        Money result = bank.reduce(sum, "USD");
+
+        assertThat(result).isEqualTo(Money.dollar(20));
+    }
+
+    @Test
+    void testPlusSameCurrencyReturnsMoney() {
+        Expression sum = Money.dollar(1).plus(Money.dollar(1));
+        assertThat(sum instanceof Money).isTrue();
+    }
 }
